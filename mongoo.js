@@ -40,3 +40,17 @@ mongoo.get('/getAllStudents', async (req,res) => {
     }
 })
 mongoo.listen(3000)
+
+mongoo.put('/updateStudent',async(req,res) => {
+    const updateStudent = await Student.findOneAndUpdate(
+        {regno},
+        {name,age,dept},
+        {new:true}
+    )
+    if(updateStudent){
+        res.send("Student Updated")
+    }
+    else{
+        res.status(404).send("Error In Updating Student")
+    }
+})
