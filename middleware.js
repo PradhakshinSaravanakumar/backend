@@ -33,10 +33,14 @@ async function insert(req, res){
     }
 }
 function middleware(req,res,next){
-    let reqdata = req.body;
-    if (reqdata.rollNo && reqdata.name  && reqdata.age && reqdata.department){
-        next()
-    }else{
-        res.send("Missing required params")
-    }
+    let token = req.body.token;
+        if(!token) return res.send("No token provided");
+        jwt.verify(token, "SECRETKEY", (err, decoded) => {
+            if(err) {
+                console.log(err);
+                return res.send("Invalid token");
+            }
+            console.log(decoded)
+            res.sendStatus(200)
+        })
 }
