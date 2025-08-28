@@ -39,7 +39,6 @@ mongoo.get('/getAllStudents', async (req,res) => {
         res.status(500).send("Error In Fetching Students")
     }
 })
-mongoo.listen(3000)
 
 mongoo.put('/updateStudent',async(req,res) => {
     const updateStudent = await Student.findOneAndUpdate(
@@ -54,3 +53,4 @@ mongoo.put('/updateStudent',async(req,res) => {
         res.status(404).send("Error In Updating Student")
     }
 })
+mongoo.listen(3000)
